@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>תולים את המן</title>
+    <style>
+        body {
+            background-image: url('g.webp');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #container {
+            position: relative;
+            width: 400px;
+            height: 1000px; /* גובה מותאם */
+        }
+
+        #image1, #image2 {
+            width: 100px; /* גודל התמונה */
+            height: 100px;
+            position: absolute;
+            transition: top 0.5s ease, left 0.5s ease;
+        }
+
+        #image1 {
+            top: 950px;
+            left: 300px;
+        }
+
+        #image2 {
+            top: 950px;
+            left: 400px; /* שינוי מיקום התמונה השנייה */
+        }
+    </style>
+</head>
+<body>
+    <h1 id="title" onclick="zz()">שאלות נכונות 0</h1>
+    <div id="container">
+        <img id="image1" src="mordhii.png" alt="תמונה ראשונה">
+        <img id="image2" src="amn.png" alt="תמונה שנייה">
+    </div>
+
+    <script>
+        const image1 = document.getElementById("image1");
+        const image2 = document.getElementById("image2");
+        const titleElement = document.getElementById("title");
+        let clicks = 0;
+        let audio = new Audio("gg.mp3");
+
+        function zz() {
+            audio.play().catch(function(error) {
+                console.error("שגיאה בהפעלת האודיו: ", error);
+            });
+        }
+
+        const path = [
+            { top: 950, left: 280 },
+            { top: 510, left: 165 },
+            { top: 500, left: 160 },
+            { top: 490, left: 155 },
+            { top: 480, left: 150 },
+            { top: 470, left: 145 },
+            { top: 460, left: 140 },
+            { top: 450, left: 138 },
+            { top: 440, left: 135 },
+            { top: 430, left: 133 },
+            { top: 420, left: 130 },
+            { top: 410, left: 132 },
+            { top: 400, left: 135 },
+            { top: 390, left: 140 },
+            { top: 380, left: 145 },
+            { top: 370, left: 150 },
+            { top: 360, left: 155 },
+            { top: 350, left: 160 },
+            { top: 340, left: 165 },
+            { top: 330, left: 170 },
+            { top: 320, left: 175 },
+            { top: 310, left: 180 },
+            { top: 300, left: 185 },
+            { top: 290, left: 190 },
+            { top: 280, left: 195 },
+            { top: 270, left: 200 },
+            { top: 260, left: 205 },
+            { top: 250, left: 210 },
+            { top: 240, left: 215 },
+            { top: 230, left: 220 }
+        ];
+
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "ArrowUp" && clicks < path.length) {
+                // Moving both images
+                image1.style.top = path[clicks].top + "px";
+                image1.style.left = path[clicks].left + "px";
+                image2.style.top = path[clicks].top + "px"; // Same top
+                image2.style.left = path[clicks].left + "px"; // Same left
+                clicks++;
+                titleElement.innerText = `שאלות נכונות ${clicks}`;
+            } else if (event.key === "ArrowDown" && clicks > 0) {
+                clicks--;
+                // Moving both images
+                image1.style.top = path[clicks].top + "px";
+                image1.style.left = path[clicks].left + "px";
+                image2.style.top = path[clicks].top + "px"; // Same top
+                image2.style.left = path[clicks].left + "px"; // Same left
+                titleElement.innerText = `שאלות נכונות ${clicks}`;
+            }
+            
+            // When clicks reach 30, navigate to new page
+            if (clicks === 30) {
+                window.location.href = "in.html";  // מעבר לדף in.html
+            }
+        });
+    </script>
+</body>
+</html>

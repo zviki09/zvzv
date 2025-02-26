@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>תולים את המן</title>
+ <style>
+    body {
+            background-image: url('nn.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+ </style>
+</head>
+<body>
+    <script>
+        let audio = new Audio("gg.mp3");
+
+        // מאזין לכל הזזת עכבר
+        document.addEventListener("mousemove", function() {
+            // אם המוזיקה לא פועלת, ננגן אותה
+            if (audio.paused) {
+                audio.play().catch(function(error) {
+                    console.error("שגיאה בהפעלת האודיו: ", error);
+                });
+            }
+        });
+
+        // ניתן להתחיל את המוזיקה אוטומטית כבר מההתחלה (אם רוצים)
+        window.onload = function() {
+            audio.play().catch(function(error) {
+                console.error("שגיאה בהפעלת האודיו: ", error);
+            });
+        };
+    </script>
+</body>
+</html>
